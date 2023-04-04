@@ -10,9 +10,6 @@ def getBoardCopy(board):
 
 
 def PrintBoard(board):
-
-  #Esta funcao imprime o quadro do jogo
-  #O quadro eh uma lista de 9 strings representando o qaudro
   copyBoard = getBoardCopy(board)
 
   for i in range(1, 10):
@@ -22,17 +19,11 @@ def PrintBoard(board):
       copyBoard[i] = board[i]
 
   print(' ' + copyBoard[7] + '|' + copyBoard[8] + '|' + copyBoard[9])
-  #print(' | |')
   print('-------')
-  #print(' | |')
   print(' ' + copyBoard[4] + '|' + copyBoard[5] + '|' + copyBoard[6])
-  #print(' | |')
   print('-------')
-  #print(' | |')
   print(' ' + copyBoard[1] + '|' + copyBoard[2] + '|' + copyBoard[3])
-  #print(' | |')
   print('-------')
-  #print(' | |')
 
 
 def input_player():
@@ -61,16 +52,14 @@ def movimento(board, letter, move):
 
 
 def souGanhador(brd, let):
-  #Dado um quadro e uma letra, esta funcao retorna True se a letra passada vence o jogo
-  return (
-    (brd[7] == let and brd[8] == let and brd[9] == let) or  #linha de cima
-    (brd[4] == let and brd[5] == let and brd[6] == let) or  #linha do meio
-    (brd[1] == let and brd[2] == let and brd[3] == let) or  #linha de baixo
-    (brd[7] == let and brd[4] == let and brd[1] == let) or  #coluna da esquerda
-    (brd[8] == let and brd[5] == let and brd[2] == let) or  #coluna do meio
-    (brd[9] == let and brd[6] == let and brd[3] == let) or  #coluna da direito
-    (brd[7] == let and brd[5] == let and brd[3] == let) or  #diagonal principal
-    (brd[9] == let and brd[5] == let and brd[1] == let))  #diagonal secundaria
+  return ((brd[7] == let and brd[8] == let and brd[9] == let)
+          or (brd[4] == let and brd[5] == let and brd[6] == let)
+          or (brd[1] == let and brd[2] == let and brd[3] == let)
+          or (brd[7] == let and brd[4] == let and brd[1] == let)
+          or (brd[8] == let and brd[5] == let and brd[2] == let)
+          or (brd[9] == let and brd[6] == let and brd[3] == let)
+          or (brd[7] == let and brd[5] == let and brd[3] == let)
+          or (brd[9] == let and brd[5] == let and brd[1] == let))
 
 
 def espacoVazio(board, move):
@@ -81,7 +70,6 @@ def espacoVazio(board, move):
 
 
 def get_move(board):
-  # Recebe o movimento do jogador
   while True:
     move = input('Qual é o seu próximo movimento? (1-9) ')
     if move.isdigit() and int(move) in range(1, 10) and espacoVazio(
@@ -118,7 +106,6 @@ def BoardSemEspaco(board):
 
 
 def possiveisOpcoes(board):
-  #Retorna uma lista com todos os espacos no quadro que estao disponiveis
 
   opcoes = []
 
@@ -237,7 +224,6 @@ print('--- MiniMax Jogo da Velha ---')
 jogar = True
 
 while jogar:
-  #Reseta o jogo
   board = [''] * 10
   playerLetter, computerLetter = input_player()
   turn = primeiroJogador()
@@ -246,7 +232,6 @@ while jogar:
 
   while game:
     if turn == 'jogador':
-      #Vez do Jogador
       PrintBoard(board)
       move = get_move(board)
       movimento(board, playerLetter, move)
@@ -265,7 +250,6 @@ while jogar:
           turn = 'computador'
 
     else:
-      #Vez do computador
       move = getComputerMove(board, playerLetter, computerLetter)
       movimento(board, computerLetter, move)
 
